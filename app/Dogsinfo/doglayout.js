@@ -164,10 +164,12 @@ const styles = {
     navLink: {
         textDecoration: "none",
         color: "#007bff",
+        transition: "color 0.3s ease",
     },
     darkNavLink: {
         textDecoration: "none",
         color: "#ffffff",
+        transition: "color 0.3s ease",
     },
     main: {
         gridArea: "main",
@@ -196,10 +198,12 @@ const styles = {
     sidebarLink: {
         textDecoration: "none",
         color: "#007bff",
+        transition: "color 0.3s ease",
     },
     darkSidebarLink: {
         textDecoration: "none",
         color: "#ffffff",
+        transition: "color 0.3s ease",
     },
     footer: {
         gridArea: "footer",

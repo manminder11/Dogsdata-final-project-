@@ -22,7 +22,10 @@ const DogLayout = ({ children }) => {
                 style={darkMode ? styles.darkHeader : styles.header}
             >
                 <h1>Dog Information</h1>
-                <button className="btn btn-primary" onClick={toggleDarkMode}>
+                <button
+                    className={`btn ${darkMode ? "btn-light" : "btn-dark"}`}
+                    onClick={toggleDarkMode}
+                >
                     {darkMode ? "Light Mode" : "Dark Mode"}
                 </button>
             </header>
@@ -34,17 +37,29 @@ const DogLayout = ({ children }) => {
             >
                 <ul className="navbar-nav mr-auto" style={styles.navList}>
                     <li className="nav-item" style={styles.navItem}>
-                        <a className="nav-link" href="#home" style={styles.navLink}>
+                        <a
+                            className="nav-link"
+                            href="#home"
+                            style={darkMode ? styles.darkNavLink : styles.navLink}
+                        >
                             Home
                         </a>
                     </li>
                     <li className="nav-item" style={styles.navItem}>
-                        <a className="nav-link" href="#about" style={styles.navLink}>
+                        <a
+                            className="nav-link"
+                            href="#about"
+                            style={darkMode ? styles.darkNavLink : styles.navLink}
+                        >
                             About
                         </a>
                     </li>
                     <li className="nav-item" style={styles.navItem}>
-                        <a className="nav-link" href="#contact" style={styles.navLink}>
+                        <a
+                            className="nav-link"
+                            href="#contact"
+                            style={darkMode ? styles.darkNavLink : styles.navLink}
+                        >
                             Contact
                         </a>
                     </li>
@@ -60,17 +75,26 @@ const DogLayout = ({ children }) => {
                 <h2>Sidebar</h2>
                 <ul className="list-unstyled" style={styles.sidebarList}>
                     <li style={styles.sidebarItem}>
-                        <a href="#link1" style={styles.sidebarLink}>
+                        <a
+                            href="#link1"
+                            style={darkMode ? styles.darkSidebarLink : styles.sidebarLink}
+                        >
                             Link 1
                         </a>
                     </li>
                     <li style={styles.sidebarItem}>
-                        <a href="#link2" style={styles.sidebarLink}>
+                        <a
+                            href="#link2"
+                            style={darkMode ? styles.darkSidebarLink : styles.sidebarLink}
+                        >
                             Link 2
                         </a>
                     </li>
                     <li style={styles.sidebarItem}>
-                        <a href="#link3" style={styles.sidebarLink}>
+                        <a
+                            href="#link3"
+                            style={darkMode ? styles.darkSidebarLink : styles.sidebarLink}
+                        >
                             Link 3
                         </a>
                     </li>
@@ -141,6 +165,10 @@ const styles = {
         textDecoration: "none",
         color: "#007bff",
     },
+    darkNavLink: {
+        textDecoration: "none",
+        color: "#ffffff",
+    },
     main: {
         gridArea: "main",
         padding: "1rem",
@@ -168,6 +196,10 @@ const styles = {
     sidebarLink: {
         textDecoration: "none",
         color: "#007bff",
+    },
+    darkSidebarLink: {
+        textDecoration: "none",
+        color: "#ffffff",
     },
     footer: {
         gridArea: "footer",

@@ -122,6 +122,8 @@ const styles = {
         gridTemplateRows: "auto auto 1fr auto",
         gridTemplateColumns: "200px 1fr",
         minHeight: "100vh",
+        backgroundColor: "#ffffff",
+        color: "#000000",
     },
     darkContainer: {
         display: "grid",
@@ -134,19 +136,20 @@ const styles = {
         gridTemplateRows: "auto auto 1fr auto",
         gridTemplateColumns: "200px 1fr",
         minHeight: "100vh",
-        backgroundColor: "#343a40",
-        color: "#ffffff",
+        backgroundColor: "#1e1e1e",
+        color: "#cfcfcf",
     },
     header: {
         gridArea: "header",
-        backgroundColor: "#f8f9fa",
+        backgroundColor: "#007bff",
         borderBottom: "1px solid #dee2e6",
+        color: "#ffffff",
     },
     darkHeader: {
         gridArea: "header",
-        backgroundColor: "#343a40",
+        backgroundColor: "#282c34",
         borderBottom: "1px solid #dee2e6",
-        color: "#ffffff",
+        color: "#61dafb",
     },
     nav: {
         gridArea: "nav",
@@ -168,25 +171,26 @@ const styles = {
     },
     darkNavLink: {
         textDecoration: "none",
-        color: "#ffffff",
+        color: "#61dafb",
         transition: "color 0.3s ease",
     },
     main: {
         gridArea: "main",
         padding: "1rem",
+        backgroundColor: "#e9ecef",
     },
     sidebar: {
         gridArea: "sidebar",
-        backgroundColor: "#f1f1f1",
+        backgroundColor: "#f8f9fa",
         padding: "1rem",
         borderRight: "1px solid #dee2e6",
     },
     darkSidebar: {
         gridArea: "sidebar",
-        backgroundColor: "#343a40",
+        backgroundColor: "#282c34",
         padding: "1rem",
         borderRight: "1px solid #dee2e6",
-        color: "#ffffff",
+        color: "#cfcfcf",
     },
     sidebarList: {
         listStyle: "none",
@@ -202,19 +206,20 @@ const styles = {
     },
     darkSidebarLink: {
         textDecoration: "none",
-        color: "#ffffff",
+        color: "#61dafb",
         transition: "color 0.3s ease",
     },
     footer: {
         gridArea: "footer",
-        backgroundColor: "#f8f9fa",
+        backgroundColor: "#007bff",
         borderTop: "1px solid #dee2e6",
+        color: "#ffffff",
     },
     darkFooter: {
         gridArea: "footer",
-        backgroundColor: "#343a40",
+        backgroundColor: "#282c34",
         borderTop: "1px solid #dee2e6",
-        color: "#ffffff",
+        color: "#61dafb",
     },
 };
 

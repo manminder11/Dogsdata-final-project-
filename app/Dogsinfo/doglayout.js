@@ -65,7 +65,7 @@ const DogLayout = ({ children }) => {
                     </li>
                 </ul>
             </nav>
-            <main className="p-3" style={styles.main}>
+            <main className="p-3" style={darkMode ? styles.darkMain : styles.main}>
                 {children}
             </main>
             <aside
@@ -178,6 +178,12 @@ const styles = {
         gridArea: "main",
         padding: "1rem",
         backgroundColor: "#e9ecef",
+    },
+    darkMain: {
+        gridArea: "main",
+        padding: "1rem",
+        backgroundColor: "#1e1e1e",
+        color: "#cfcfcf",
     },
     sidebar: {
         gridArea: "sidebar",

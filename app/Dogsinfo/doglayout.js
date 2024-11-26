@@ -49,7 +49,6 @@ const styles = {
         padding: '1rem',
         textAlign: 'center',
         borderBottom: '1px solid #dee2e6',
-        transition: 'background-color 0.3s ease',
     },
     nav: {
         marginTop: '1rem',
@@ -66,22 +65,16 @@ const styles = {
     navLink: {
         textDecoration: 'none',
         color: '#007bff',
-        transition: 'color 0.3s ease',
-    },
-    navLinkHover: {
-        color: '#0056b3',
     },
     main: {
         gridArea: 'main',
         padding: '1rem',
-        animation: 'fadeIn 1s ease-in-out',
     },
     sidebar: {
         gridArea: 'sidebar',
         backgroundColor: '#f1f1f1',
         padding: '1rem',
         borderRight: '1px solid #dee2e6',
-        transition: 'background-color 0.3s ease',
     },
     sidebarList: {
         listStyle: 'none',
@@ -93,10 +86,6 @@ const styles = {
     sidebarLink: {
         textDecoration: 'none',
         color: '#007bff',
-        transition: 'color 0.3s ease',
-    },
-    sidebarLinkHover: {
-        color: '#0056b3',
     },
     footer: {
         gridArea: 'footer',
@@ -104,11 +93,6 @@ const styles = {
         padding: '1rem',
         textAlign: 'center',
         borderTop: '1px solid #dee2e6',
-        transition: 'background-color 0.3s ease',
-    },
-    '@keyframes fadeIn': {
-        from: { opacity: 0 },
-        to: { opacity: 1 },
     },
 };
 

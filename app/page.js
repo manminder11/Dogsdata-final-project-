@@ -1,5 +1,6 @@
 "use client";
 
+
 import React from 'react';
 import DogLayout from "./Dogsinfo/doglayout";
 

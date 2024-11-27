@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DogInfo from "./DogInfo";
 
 const DogLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
@@ -15,16 +16,21 @@ const DogLayout = ({ children }) => {
       className={`container-fluid ${
         darkMode ? "bg-dark text-white" : "bg-light text-dark"
       }`}
-      style={darkMode ? styles.darkContainer : styles.container}
+      style={styles.container}
     >
       <header
         className="d-flex justify-content-between align-items-center p-3"
-        style={darkMode ? styles.darkHeader : styles.header}
+        style={styles.header}
       >
         <h1>Dog Information</h1>
         <button
           className={`btn ${darkMode ? "btn-light" : "btn-dark"}`}
           onClick={toggleDarkMode}
+          style={{
+            ...styles.button,
+            backgroundColor: darkMode ? "#e0e0e0" : "#343a40",
+            color: darkMode ? "#343a40" : "#ffffff",
+          }}
         >
           {darkMode ? "Light Mode" : "Dark Mode"}
         </button>
@@ -37,73 +43,47 @@ const DogLayout = ({ children }) => {
       >
         <ul className="navbar-nav mr-auto" style={styles.navList}>
           <li className="nav-item" style={styles.navItem}>
-            <a
-              className="nav-link"
-              href="#home"
-              style={darkMode ? styles.darkNavLink : styles.navLink}
-            >
+            <a className="nav-link" href="#home" style={styles.navLink}>
               Home
             </a>
           </li>
           <li className="nav-item" style={styles.navItem}>
-            <a
-              className="nav-link"
-              href="#about"
-              style={darkMode ? styles.darkNavLink : styles.navLink}
-            >
+            <a className="nav-link" href="#about" style={styles.navLink}>
               About
             </a>
           </li>
           <li className="nav-item" style={styles.navItem}>
-            <a
-              className="nav-link"
-              href="#contact"
-              style={darkMode ? styles.darkNavLink : styles.navLink}
-            >
+            <a className="nav-link" href="#contact" style={styles.navLink}>
               Contact
             </a>
           </li>
         </ul>
       </nav>
-      <main className="p-3" style={darkMode ? styles.darkMain : styles.main}>
+      <main className="p-3" style={styles.main}>
         {children}
+        <DogInfo />
       </main>
-      <aside
-        className="p-3"
-        style={darkMode ? styles.darkSidebar : styles.sidebar}
-      >
+      <aside className="p-3" style={styles.sidebar}>
         <h2>Sidebar</h2>
         <ul className="list-unstyled" style={styles.sidebarList}>
           <li style={styles.sidebarItem}>
-            <a
-              href="#link1"
-              style={darkMode ? styles.darkSidebarLink : styles.sidebarLink}
-            >
+            <a href="#link1" style={styles.sidebarLink}>
               Link 1
             </a>
           </li>
           <li style={styles.sidebarItem}>
-            <a
-              href="#link2"
-              style={darkMode ? styles.darkSidebarLink : styles.sidebarLink}
-            >
+            <a href="#link2" style={styles.sidebarLink}>
               Link 2
             </a>
           </li>
           <li style={styles.sidebarItem}>
-            <a
-              href="#link3"
-              style={darkMode ? styles.darkSidebarLink : styles.sidebarLink}
-            >
+            <a href="#link3" style={styles.sidebarLink}>
               Link 3
             </a>
           </li>
         </ul>
       </aside>
-      <footer
-        className="text-center p-3"
-        style={darkMode ? styles.darkFooter : styles.footer}
-      >
+      <footer className="text-center p-3" style={styles.footer}>
         <p>&copy; 2023 Dog Info</p>
       </footer>
     </div>
@@ -114,30 +94,14 @@ const styles = {
   container: {
     display: "grid",
     gridTemplateAreas: `
-                        "header header"
-                        "nav nav"
-                        "sidebar main"
-                        "footer footer"
-                `,
+            "header header"
+            "nav nav"
+            "sidebar main"
+            "footer footer"
+        `,
     gridTemplateRows: "auto auto 1fr auto",
     gridTemplateColumns: "200px 1fr",
     minHeight: "100vh",
-    backgroundColor: "#ffffff",
-    color: "#000000",
-  },
-  darkContainer: {
-    display: "grid",
-    gridTemplateAreas: `
-                        "header header"
-                        "nav nav"
-                        "sidebar main"
-                        "footer footer"
-                `,
-    gridTemplateRows: "auto auto 1fr auto",
-    gridTemplateColumns: "200px 1fr",
-    minHeight: "100vh",
-    backgroundColor: "#1e1e1e",
-    color: "#cfcfcf",
   },
   header: {
     gridArea: "header",
@@ -145,14 +109,9 @@ const styles = {
     borderBottom: "1px solid #dee2e6",
     color: "#ffffff",
   },
-  darkHeader: {
-    gridArea: "header",
-    backgroundColor: "#282c34",
-    borderBottom: "1px solid #dee2e6",
-    color: "#61dafb",
-  },
   nav: {
     gridArea: "nav",
+    backgroundColor: "#f8f9fa",
     borderBottom: "1px solid #dee2e6",
   },
   navList: {
@@ -167,36 +126,16 @@ const styles = {
   navLink: {
     textDecoration: "none",
     color: "#007bff",
-    transition: "color 0.3s ease",
-  },
-  darkNavLink: {
-    textDecoration: "none",
-    color: "#61dafb",
-    transition: "color 0.3s ease",
   },
   main: {
     gridArea: "main",
     padding: "1rem",
-    backgroundColor: "#e9ecef",
-  },
-  darkMain: {
-    gridArea: "main",
-    padding: "1rem",
-    backgroundColor: "#1e1e1e",
-    color: "#cfcfcf",
   },
   sidebar: {
     gridArea: "sidebar",
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#f1f1f1",
     padding: "1rem",
     borderRight: "1px solid #dee2e6",
-  },
-  darkSidebar: {
-    gridArea: "sidebar",
-    backgroundColor: "#282c34",
-    padding: "1rem",
-    borderRight: "1px solid #dee2e6",
-    color: "#cfcfcf",
   },
   sidebarList: {
     listStyle: "none",
@@ -208,24 +147,14 @@ const styles = {
   sidebarLink: {
     textDecoration: "none",
     color: "#007bff",
-    transition: "color 0.3s ease",
-  },
-  darkSidebarLink: {
-    textDecoration: "none",
-    color: "#61dafb",
-    transition: "color 0.3s ease",
   },
   footer: {
     gridArea: "footer",
-    backgroundColor: "#007bff",
+    backgroundColor: "#f8f9fa",
     borderTop: "1px solid #dee2e6",
-    color: "#ffffff",
   },
-  darkFooter: {
-    gridArea: "footer",
-    backgroundColor: "#282c34",
-    borderTop: "1px solid #dee2e6",
-    color: "#61dafb",
+  button: {
+    transition: "background-color 0.3s ease, color 0.3s ease",
   },
 };
 

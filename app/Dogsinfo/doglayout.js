@@ -64,7 +64,9 @@ const DogLayout = ({ children }) => {
         <DogInfo />
       </main>
       <aside
-        className={`p-3 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`}
+        className={`p-3 ${
+          darkMode ? "bg-dark text-white" : "bg-light text-dark"
+        }`}
         style={styles.sidebar}
       >
         <h2>Sidebar</h2>

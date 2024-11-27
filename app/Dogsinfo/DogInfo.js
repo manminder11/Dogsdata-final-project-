@@ -6,6 +6,7 @@ import Image from "next/image";
 const DogInfo = () => {
   const [dogBreeds, setDogBreeds] = useState(null);
   const [dogImages, setDogImages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState(null);
 
   const fetchDogBreeds = () => {
@@ -27,7 +28,7 @@ const DogInfo = () => {
   };
 
   const fetchDogImages = (breed) => {
-    fetch(`https://dog.ceo/api/breed/${breed}/images`)
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -36,7 +37,7 @@ const DogInfo = () => {
       })
       .then((data) => {
         console.log("Fetched dog images:", data.message);
-        setDogImages(data.message);
+        setDogImages([data.message]);
       })
       .catch((error) => {
         console.error("Error fetching dog images:", error);
@@ -62,6 +63,13 @@ const DogInfo = () => {
       });
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm) {
+      fetchDogImages(searchTerm.toLowerCase());
+    }
+  };
+
   return (
     <div>
       <button className="btn btn-primary m-2" onClick={fetchDogBreeds}>
@@ -70,6 +78,18 @@ const DogInfo = () => {
       <button className="btn btn-secondary m-2" onClick={fetchRandomDogImage}>
         Fetch Random Dog Image
       </button>
+      <form onSubmit={handleSearch} className="m-2">
+        <input
+          type="text"
+          placeholder="Search for a breed"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="form-control"
+        />
+        <button type="submit" className="btn btn-secondary mt-2">
+          Search
+        </button>
+      </form>
       {error && <p>Error fetching dog info: {error}</p>}
       {dogBreeds ? (
         <div>

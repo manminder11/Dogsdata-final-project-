@@ -87,7 +87,7 @@ const DogLayout = ({ children }) => {
         </ul>
       </aside>
       <footer className="text-center p-3" style={styles.footer}>
-        <p>&copy; 2023 Dog Info</p>
+        <p>&copy; 2024 Dog Info</p>
       </footer>
     </div>
   );

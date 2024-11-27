@@ -8,6 +8,7 @@ const DogInfo = () => {
   const [dogImages, setDogImages] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState(null);
+  const [selectedBreed, setSelectedBreed] = useState(null);
 
   const fetchDogBreeds = () => {
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -38,6 +39,7 @@ const DogInfo = () => {
       .then((data) => {
         console.log("Fetched dog images:", data.message);
         setDogImages([data.message]);
+        setSelectedBreed(breed);
       })
       .catch((error) => {
         console.error("Error fetching dog images:", error);
@@ -56,6 +58,7 @@ const DogInfo = () => {
       .then((data) => {
         console.log("Fetched random dog image:", data.message);
         setDogImages([data.message]);
+        setSelectedBreed(null);
       })
       .catch((error) => {
         console.error("Error fetching random dog image:", error);
@@ -123,6 +126,15 @@ const DogInfo = () => {
         </div>
       ) : (
         <p>No breeds data fetched yet.</p>
+      )}
+      {selectedBreed && (
+        <div>
+          <h2>Breed Information</h2>
+          <p>Breed: {selectedBreed}</p>
+          <p>Origin: [Origin Information]</p>
+          <p>Size: [Size Information]</p>
+          <p>Temperament: [Temperament Information]</p>
+        </div>
       )}
       {dogImages.length > 0 && (
         <div>

@@ -48,12 +48,13 @@ const DogLayout = ({ children }) => {
             </a>
           </li>
           <li className="nav-item" style={styles.navItem}>
-            <a className="nav-link" href="#about" style={styles.navLink}>
-              About
+            <a className="nav-link" href="#images" style={styles.navLink}>
+              Images
             </a>
           </li>
           <li className="nav-item" style={styles.navItem}>
             <a className="nav-link" href="#contact" style={styles.navLink}>
+                Dog Images
               Contact
             </a>
           </li>

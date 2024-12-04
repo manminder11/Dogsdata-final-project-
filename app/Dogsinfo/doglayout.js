@@ -3,12 +3,42 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DogInfo from "./DogInfo";
+import Link from "next/link";
+import Image from "next/image";
 
 const DogLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dogImages, setDogImages] = useState([]);
+  const [error, setError] = useState(null);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+  };
+
+  const fetchDogImages = (breed) => {
+    fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Fetched dog images:", data.message);
+        setDogImages([data.message]);
+      })
+      .catch((error) => {
+        console.error("Error fetching dog images:", error);
+        setError(error.message);
+      });
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm) {
+      fetchDogImages(searchTerm.toLowerCase());
+    }
   };
 
   return (
@@ -43,26 +73,37 @@ const DogLayout = ({ children }) => {
       >
         <ul className="navbar-nav mr-auto" style={styles.navList}>
           <li className="nav-item" style={styles.navItem}>
-            <a className="nav-link" href="#home" style={styles.navLink}>
-              Home
-            </a>
-          </li>
-          <li className="nav-item" style={styles.navItem}>
-            <a className="nav-link" href="#images" style={styles.navLink}>
-              Images
-            </a>
-          </li>
-          <li className="nav-item" style={styles.navItem}>
-            <a className="nav-link" href="#contact" style={styles.navLink}>
-                Dog Images
-              Contact
-            </a>
+            <Link href="/" legacyBehavior>
+              <a className="nav-link" style={styles.navLink}>
+                Home
+              </a>
+            </Link>
           </li>
         </ul>
       </nav>
       <main className="p-3" style={styles.main}>
         {children}
         <DogInfo />
+        {error && <p>Error fetching dog info: {error}</p>}
+        {dogImages.length > 0 && (
+          <div>
+            <h2>Dog Images</h2>
+            <div className="d-flex flex-wrap">
+              {dogImages.map((image, index) => (
+                <div key={index} className="m-2">
+                  <Image
+                    src={image}
+                    alt="Dog"
+                    width={200}
+                    height={200}
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
       <aside
         className={`p-3 ${
@@ -71,25 +112,14 @@ const DogLayout = ({ children }) => {
         style={styles.sidebar}
       >
         <h2>Sidebar</h2>
-        <ul className="list-unstyled" style={styles.sidebarList}>
-          <li style={styles.sidebarItem}>
-            <a href="#link1" style={styles.sidebarLink}>
-              Link 1
-            </a>
-          </li>
-          <li style={styles.sidebarItem}>
-            <a href="#link2" style={styles.sidebarLink}>
-              Link 2
-            </a>
-          </li>
-          <li style={styles.sidebarItem}>
-            <a href="#link3" style={styles.sidebarLink}>
-              Link 3
-            </a>
-          </li>
-        </ul>
+        <ul className="list-unstyled" style={styles.sidebarList}></ul>
       </aside>
-      <footer className="text-center p-3" style={styles.footer}>
+      <footer
+        className={`text-center p-3 ${
+          darkMode ? "bg-dark text-white" : "bg-light text-dark"
+        }`}
+        style={styles.footer}
+      >
         <p>&copy; 2024 Dog Info</p>
       </footer>
     </div>
@@ -146,13 +176,6 @@ const styles = {
   sidebarList: {
     listStyle: "none",
     padding: 0,
-  },
-  sidebarItem: {
-    margin: "0.5rem 0",
-  },
-  sidebarLink: {
-    textDecoration: "none",
-    color: "#007bff",
   },
   footer: {
     gridArea: "footer",

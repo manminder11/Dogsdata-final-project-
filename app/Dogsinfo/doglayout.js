@@ -79,6 +79,18 @@ const DogLayout = ({ children }) => {
               </a>
             </Link>
           </li>
+          <li className="nav-item" style={styles.navItem}>
+            <Link href="/images" legacyBehavior>
+              <a className="nav-link" style={styles.navLink}>
+                Images
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item" style={styles.navItem}>
+            <a className="nav-link" href="#contact" style={styles.navLink}>
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
       <main className="p-3" style={styles.main}>
@@ -112,7 +124,23 @@ const DogLayout = ({ children }) => {
         style={styles.sidebar}
       >
         <h2>Sidebar</h2>
-        <ul className="list-unstyled" style={styles.sidebarList}></ul>
+        <ul className="list-unstyled" style={styles.sidebarList}>
+          <li style={styles.sidebarItem}>
+            <a href="#link1" style={styles.sidebarLink}>
+              Link 1
+            </a>
+          </li>
+          <li style={styles.sidebarItem}>
+            <a href="#link2" style={styles.sidebarLink}>
+              Link 2
+            </a>
+          </li>
+          <li style={styles.sidebarItem}>
+            <a href="#link3" style={styles.sidebarLink}>
+              Link 3
+            </a>
+          </li>
+        </ul>
       </aside>
       <footer
         className={`text-center p-3 ${
@@ -176,6 +204,13 @@ const styles = {
   sidebarList: {
     listStyle: "none",
     padding: 0,
+  },
+  sidebarItem: {
+    margin: "0.5rem 0",
+  },
+  sidebarLink: {
+    textDecoration: "none",
+    color: "#007bff",
   },
   footer: {
     gridArea: "footer",

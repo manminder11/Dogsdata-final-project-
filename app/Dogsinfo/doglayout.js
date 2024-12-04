@@ -86,11 +86,6 @@ const DogLayout = ({ children }) => {
               </a>
             </Link>
           </li>
-          <li className="nav-item" style={styles.navItem}>
-            <a className="nav-link" href="#contact" style={styles.navLink}>
-              Contact
-            </a>
-          </li>
         </ul>
       </nav>
       <main className="p-3" style={styles.main}>
@@ -117,31 +112,6 @@ const DogLayout = ({ children }) => {
           </div>
         )}
       </main>
-      <aside
-        className={`p-3 ${
-          darkMode ? "bg-dark text-white" : "bg-light text-dark"
-        }`}
-        style={styles.sidebar}
-      >
-        <h2>Sidebar</h2>
-        <ul className="list-unstyled" style={styles.sidebarList}>
-          <li style={styles.sidebarItem}>
-            <a href="#link1" style={styles.sidebarLink}>
-              Link 1
-            </a>
-          </li>
-          <li style={styles.sidebarItem}>
-            <a href="#link2" style={styles.sidebarLink}>
-              Link 2
-            </a>
-          </li>
-          <li style={styles.sidebarItem}>
-            <a href="#link3" style={styles.sidebarLink}>
-              Link 3
-            </a>
-          </li>
-        </ul>
-      </aside>
       <footer
         className={`text-center p-3 ${
           darkMode ? "bg-dark text-white" : "bg-light text-dark"
@@ -160,11 +130,11 @@ const styles = {
     gridTemplateAreas: `
             "header header"
             "nav nav"
-            "sidebar main"
+            "main main"
             "footer footer"
         `,
     gridTemplateRows: "auto auto 1fr auto",
-    gridTemplateColumns: "200px 1fr",
+    gridTemplateColumns: "1fr",
     minHeight: "100vh",
   },
   header: {
@@ -194,23 +164,6 @@ const styles = {
   main: {
     gridArea: "main",
     padding: "1rem",
-  },
-  sidebar: {
-    gridArea: "sidebar",
-    backgroundColor: "#f1f1f1",
-    padding: "1rem",
-    borderRight: "1px solid #dee2e6",
-  },
-  sidebarList: {
-    listStyle: "none",
-    padding: 0,
-  },
-  sidebarItem: {
-    margin: "0.5rem 0",
-  },
-  sidebarLink: {
-    textDecoration: "none",
-    color: "#007bff",
   },
   footer: {
     gridArea: "footer",

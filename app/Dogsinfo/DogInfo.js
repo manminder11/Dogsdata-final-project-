@@ -53,58 +53,57 @@ const DogInfo = () => {
     }
   };
 
+  const renderBreeds = (breeds) => {
+    return (
+      <ul className="list-disc pl-5 space-y-2">
+        {Object.keys(breeds).map((breed) => (
+          <li key={breed} className="mb-1 bg-gray-100 hover:bg-gray-200 transition duration-300 p-2 rounded-lg">
+            <span className="font-semibold text-blue-600 hover:text-blue-800 transition duration-300 cursor-pointer">{breed}</span>
+            {breeds[breed].length > 0 && (
+              <ul className="list-disc pl-5 space-y-1">
+                {breeds[breed].map((subBreed) => (
+                  <li key={subBreed} className="mb-1 bg-gray-50 hover:bg-gray-100 transition duration-300 p-2 rounded-lg">
+                    <span className="text-gray-700 hover:text-gray-900 transition duration-300 cursor-pointer">{subBreed}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
-    <div>
-      <button className="btn btn-primary m-2" onClick={fetchDogBreeds}>
+    <div className="p-4">
+      <button className="bg-blue-500 text-white py-2 px-4 rounded mb-4 hover:bg-blue-600 transition duration-300" onClick={fetchDogBreeds}>
         Fetch Dog Breeds
       </button>
-      <form onSubmit={handleSearch} className="m-2">
+      <form onSubmit={handleSearch} className="mb-4">
         <input
           type="text"
           placeholder="Search for a breed"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="form-control"
+          className="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button type="submit" className="btn btn-secondary mt-2">
+        <button type="submit" className="bg-gray-500 text-white py-2 px-4 rounded mt-2 hover:bg-gray-600 transition duration-300">
           Search
         </button>
       </form>
-      {error && <p>Error fetching dog info: {error}</p>}
+      {error && <p className="text-red-500">Error fetching dog info: {error}</p>}
       {dogBreeds ? (
         <div>
-          <h2>Dog Breeds</h2>
-          <ul>
-            {Object.keys(dogBreeds).map((breed) => (
-              <li key={breed}>
-                <Link href={`/images/${breed}`} legacyBehavior>
-                  <a className="btn btn-link">{breed}</a>
-                </Link>
-                {dogBreeds[breed].length > 0 && (
-                  <ul>
-                    {dogBreeds[breed].map((subBreed) => (
-                      <li key={subBreed}>
-                        <Link
-                          href={`/images/${breed}/${subBreed}`}
-                          legacyBehavior
-                        >
-                          <a className="btn btn-link">{subBreed}</a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+          <h2 className="text-xl font-bold mb-2">Dog Breeds</h2>
+          {renderBreeds(dogBreeds)}
         </div>
       ) : (
         <p>No breeds data fetched yet.</p>
       )}
       {dogImages.length > 0 && (
         <div>
-          <h2>Dog Images</h2>
-          <div className="d-flex flex-wrap">
+          <h2 className="text-xl font-bold mb-2">Dog Images</h2>
+          <div className="flex flex-wrap">
             {dogImages.map((image, index) => (
               <div key={index} className="m-2">
                 <Image
@@ -114,6 +113,7 @@ const DogInfo = () => {
                   height={200}
                   layout="responsive"
                   objectFit="cover"
+                  className="rounded-lg shadow-md hover:shadow-lg transition duration-300"
                 />
               </div>
             ))}

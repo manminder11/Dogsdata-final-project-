@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import DogInfo from "./DogInfo";
 import Link from "next/link";
 import Image from "next/image";
+import Home from "./home";
 
 const DogLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
@@ -30,6 +31,24 @@ const DogLayout = ({ children }) => {
       })
       .catch((error) => {
         console.error("Error fetching dog images:", error);
+        setError(error.message);
+      });
+  };
+
+  const fetchRandomDogImages = () => {
+    fetch("https://dog.ceo/api/breeds/image/random/6")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Fetched random dog images:", data.message);
+        setDogImages(data.message);
+      })
+      .catch((error) => {
+        console.error("Error fetching random dog images:", error);
         setError(error.message);
       });
   };
@@ -71,25 +90,36 @@ const DogLayout = ({ children }) => {
         }`}
         style={styles.nav}
       >
-        <ul className="navbar-nav mr-auto" style={styles.navList}>
+        <ul className="navbar-nav">
           <li className="nav-item" style={styles.navItem}>
-            <Link href="/" legacyBehavior>
-              <a className="nav-link" style={styles.navLink}>
-                Home
-              </a>
-            </Link>
-          </li>
-          <li className="nav-item" style={styles.navItem}>
-            <Link href="/images" legacyBehavior>
-              <a className="nav-link" style={styles.navLink}>
-                Images
-              </a>
-            </Link>
+            <button 
+              className={`btn ${darkMode ? "btn-light" : "btn-dark"}`}
+              onClick={fetchRandomDogImages}
+              style={{
+                ...styles.button,
+                backgroundColor: darkMode ? "#e0e0e0" : "#343a40",
+                color: darkMode ? "#343a40" : "#ffffff",
+              }}
+            >
+              Random Dogs
+            </button>
           </li>
         </ul>
       </nav>
       <main className="p-3" style={styles.main}>
         {children}
+        <form onSubmit={handleSearch} className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search for a breed"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button type="submit" className="btn btn-primary mt-2">
+            Search
+          </button>
+        </form>
         <DogInfo />
         {error && <p>Error fetching dog info: {error}</p>}
         {dogImages.length > 0 && (

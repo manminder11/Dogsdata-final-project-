@@ -79,18 +79,6 @@ const DogInfo = () => {
       <button className="bg-blue-500 text-white py-2 px-4 rounded mb-4 hover:bg-blue-600 transition duration-300" onClick={fetchDogBreeds}>
         Fetch Dog Breeds
       </button>
-      <form onSubmit={handleSearch} className="mb-4">
-        <input
-          type="text"
-          placeholder="Search for a breed"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button type="submit" className="bg-gray-500 text-white py-2 px-4 rounded mt-2 hover:bg-gray-600 transition duration-300">
-          Search
-        </button>
-      </form>
       {error && <p className="text-red-500">Error fetching dog info: {error}</p>}
       {dogBreeds ? (
         <div>
